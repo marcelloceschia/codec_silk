@@ -1,0 +1,4 @@
+[Project]
+Name=codec_silk
+Manager=KDevCMakeManager
+VersionControl=kdevgit
