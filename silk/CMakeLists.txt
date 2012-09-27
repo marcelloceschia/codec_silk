@@ -8,8 +8,8 @@ set(LIBRARYNAME silk)
 set(CMAKE_C_FLAGS "-Wall")
 
 
-aux_source_directory(SILK_SDK_SRC_FLP_v1.0.9/src silk_SRC)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR} SILK_SDK_SRC_FLP_v1.0.9/interface)
+aux_source_directory(SILK_SDK_SRC_FLP_v${SILK_VERSION}/src silk_SRC)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR} SILK_SDK_SRC_FLP_v${SILK_VERSION}/interface)
 
 
 LIST(APPEND SRC ${silk_SRC})

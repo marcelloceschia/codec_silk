@@ -10,7 +10,7 @@ set(PROJECT_APIVER "${PROJECT_VER_MAJOR}.${PROJECT_VER_MINOR}")
 set(PROJECT_DESCRIPTION "Asterisk silk codec support")
 
 set(SILK_VERSION "1.0.9")
-set(SILK_DOWNLOAD_URL "http://172.17.3.1/SILK_SDK_SRC_v${SILK_VERSION}.zip")
+set(SILK_DOWNLOAD_URL "http://developer.skype.com/silk/SILK_SDK_SRC_v${SILK_VERSION}.zip")
 
 #set path for additional modules
 SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules")
@@ -25,6 +25,7 @@ project(codec_silk)
 ExternalProject_Add(
    silk
    URL ${SILK_DOWNLOAD_URL}
+   CMAKE_ARGS -DSILK_VERSION=${SILK_VERSION}
    PREFIX "silk"
    DOWNLOAD_DIR ${CMAKE_CURRENT_BINARY_DIR}/silk
    PATCH_COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/silk/CMakeLists.txt" <SOURCE_DIR>/CMakeLists.txt
