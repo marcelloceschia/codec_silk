@@ -22,31 +22,27 @@ SILK support was added in Asterisk 10, but the translator module is provided as 
 
 0. Presuming that you already have asterisk built and installed somewhere, you can build and install this module like so:
 
-1. Get the SILK Codec [from Skype][silk]. They have terms you must agree to before pulling down the codec source, so go to the website, do that, and then download the source into the codecs directory of your asterisk source tree.
+1. create build directory and change to it
 
-    `cd /path/to/src/asterisk/codecs`
+    `mkdir build`
 
-    `curl -fkSLO http://developer.skype.com/silk/SILK_SDK_SRC_v1.0.8.zip`
+    `cd build`
 
-2. Pull down the install script from here. This will unpack the silk source, link it into the codecs directory, and modify the codecs Makefile appropriately.
+2. use cmake to create Makefile
 
-    `curl -fkSLO https://raw.github.com/mordak/codec_silk/master/install_silk.sh`
+    `cmake ..`
 
-    `sh install_silk.sh`
-
-3. Make asterisk. This will build the module as a .so:
-
-    `cd ../`
+3. use make to download silk codec library and build codec_silk
 
     `make`
 
-4. Install the new module. If you have previously installed asterisk from the same source directory you are using now, then you should be able to just 'make install' again. If you just want to copy the new module into your existing asterisk install, then you can do just that:
+4. Install the new module. 
 
-    `cp codecs/codec_silk.so /path/to/asterisk/install/lib/asterisk/modules/`
+    `make install`
 
-5. Connect to asterisk and tell it to load the module:
+5. check if you have silk-codec enabled in codecs.conf, see [Asterisk 10 Codecs and Audio Formats][codec.conf]
 
-    `/path/to/asterisk/sbin/asterisk -rvvv`
+    `asterisk -rvvv`
 
     `*CLI> module load codec_silk.so`
 
@@ -65,6 +61,7 @@ I have added support for the SILK native Packet Loss Concealment (PLC), but have
 Suggestions / bug reports / pull requests are welcome. This is my first time writing anything for asterisk and first repo on github, so please be kind.
 
 [silk]: http://developer.skype.com/silk
+[codec.conf]: https://wiki.asterisk.org/wiki/display/AST/Asterisk+10+Codecs+and+Audio+Formats
 [asterisk]: http://www.asterisk.org/
 [astsilk]: http://downloads.digium.com/pub/telephony/codec_silk/
 
