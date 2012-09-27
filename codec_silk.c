@@ -29,7 +29,7 @@ ASTERISK_FILE_VERSION(__FILE__, "$Revision: $")
 #include "asterisk/slin.h"
 #include "asterisk/silk.h"
 
-#include "silk/interface/SKP_Silk_SDK_API.h"
+#include "SKP_Silk_SDK_API.h"
 #include "ex_silk.h"
 
 #include "asterisk/logger.h"
@@ -68,16 +68,6 @@ struct silk_coder_pvt {
   int16_t buf[SLIN_BUFFER_SIZE_BYTES / 2];
 };
 
-
-struct ast_format_attr_interface silk_interface = {
-  .id = AST_FORMAT_SILK,
-  .format_attr_cmp = NULL,
-  .format_attr_get_joint = NULL,
-  .format_attr_set = NULL,
-  .format_attr_isset = NULL,
-  .format_attr_get_val = NULL
-  
-};
 
 /************ CONSTRUCTORS ************/
 
@@ -507,7 +497,6 @@ static int load_module(void)
 
   /* print the skype version */
   ast_log(LOG_NOTICE, "SILK Version : %s\n", SKP_Silk_SDK_get_version());
-  ast_format_attr_reg_interface(&silk_interface);
 
   /* get the encoder / decoder sizes */
   ret = SKP_Silk_SDK_Get_Encoder_Size(&encSizeBytes);
